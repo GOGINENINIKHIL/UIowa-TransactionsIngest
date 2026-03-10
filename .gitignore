@@ -1,0 +1,15 @@
+# Build outputs
+bin/
+obj/
+
+# Database file
+*.db
+*.db-shm
+*.db-wal
+
+# VS Code
+.vscode/
+
+# dotnet
+*.user
+.vs/
