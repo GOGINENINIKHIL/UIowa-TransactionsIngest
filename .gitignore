@@ -13,3 +13,6 @@ obj/
 # dotnet
 *.user
 .vs/
+
+# SQLite database
+transactions.db
