@@ -49,8 +49,7 @@ public class MockApiService
 
     private List<ApiTransaction> GetMockTransactions()
     {
-        var now = DateTime.UtcNow;
-
+        // Fixed timestamps to ensure idempotency across runs
         return new List<ApiTransaction>
         {
             new ApiTransaction
@@ -60,7 +59,7 @@ public class MockApiService
                 LocationCode = "STO-01",
                 ProductName = "Wireless Mouse",
                 Amount = 19.99m,
-                Timestamp = now.AddHours(-2)
+                Timestamp = new DateTime(2026, 3, 11, 0, 0, 0, DateTimeKind.Utc)
             },
             new ApiTransaction
             {
@@ -69,7 +68,7 @@ public class MockApiService
                 LocationCode = "STO-02",
                 ProductName = "USB-C Cable",
                 Amount = 25.00m,
-                Timestamp = now.AddHours(-5)
+                Timestamp = new DateTime(2026, 3, 10, 22, 0, 0, DateTimeKind.Utc)
             },
             new ApiTransaction
             {
@@ -78,7 +77,7 @@ public class MockApiService
                 LocationCode = "STO-01",
                 ProductName = "HDMI Adapter",
                 Amount = 15.49m,
-                Timestamp = now.AddHours(-10)
+                Timestamp = new DateTime(2026, 3, 10, 18, 0, 0, DateTimeKind.Utc)
             },
             new ApiTransaction
             {
@@ -87,7 +86,7 @@ public class MockApiService
                 LocationCode = "STO-03",
                 ProductName = "Keyboard",
                 Amount = 45.00m,
-                Timestamp = now.AddHours(-20)
+                Timestamp = new DateTime(2026, 3, 10, 10, 0, 0, DateTimeKind.Utc)
             },
             new ApiTransaction
             {
@@ -96,7 +95,7 @@ public class MockApiService
                 LocationCode = "STO-02",
                 ProductName = "Mouse Pad",
                 Amount = 9.99m,
-                Timestamp = now.AddHours(-23)
+                Timestamp = new DateTime(2026, 3, 10, 2, 0, 0, DateTimeKind.Utc)
             }
         };
     }
