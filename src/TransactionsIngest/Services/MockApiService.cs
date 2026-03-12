@@ -30,26 +30,45 @@ public class MockApiService
     private readonly bool _useMockFeed;
     private readonly string _baseUrl;
     private readonly string _endpoint;
+    private readonly string _mockFeedPath;
 
-    public MockApiService(bool useMockFeed, string baseUrl, string endpoint)
+    public MockApiService(bool useMockFeed, string baseUrl, string endpoint, string mockFeedPath = "")
     {
         _useMockFeed = useMockFeed;
         _baseUrl = baseUrl;
         _endpoint = endpoint;
+        _mockFeedPath = mockFeedPath;
     }
 
     public Task<List<ApiTransaction>> FetchTransactionsAsync()
     {
         if (_useMockFeed)
+        {
+            // If a mock feed file is configured and exists, read from it
+            if (!string.IsNullOrWhiteSpace(_mockFeedPath) && File.Exists(_mockFeedPath))
+            {
+                Console.WriteLine($"  Using mock feed file: {_mockFeedPath}");
+                return Task.FromResult(ReadFromJsonFile(_mockFeedPath));
+            }
+
+            // Fall back to hardcoded mock data
+            Console.WriteLine("  Using hardcoded mock data.");
             return Task.FromResult(GetMockTransactions());
+        }
 
         // Real API call would go here in production
         throw new NotImplementedException("Real API calls not implemented. Set UseMockFeed=true.");
     }
 
+    private List<ApiTransaction> ReadFromJsonFile(string path)
+    {
+        var json = File.ReadAllText(path);
+        return JsonSerializer.Deserialize<List<ApiTransaction>>(json)
+            ?? new List<ApiTransaction>();
+    }
+
     private List<ApiTransaction> GetMockTransactions()
     {
-        // Fixed timestamps to ensure idempotency across runs
         return new List<ApiTransaction>
         {
             new ApiTransaction

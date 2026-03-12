@@ -17,6 +17,7 @@ public class ApiSettings
     public string BaseUrl { get; set; } = string.Empty;
     public string TransactionsEndpoint { get; set; } = string.Empty;
     public bool UseMockFeed { get; set; } = true;
+    public string MockFeedPath { get; set; } = string.Empty;
 }
 
 public class IngestSettings

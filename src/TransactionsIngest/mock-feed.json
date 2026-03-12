@@ -1,0 +1,42 @@
+[
+  {
+    "transactionId": "T-1001",
+    "cardNumber": "4111111111111111",
+    "locationCode": "STO-01",
+    "productName": "Wireless Mouse",
+    "amount": 19.99,
+    "timestamp": "2026-03-11T00:00:00Z"
+  },
+  {
+    "transactionId": "T-1002",
+    "cardNumber": "4000000000000002",
+    "locationCode": "STO-02",
+    "productName": "USB-C Cable",
+    "amount": 25.00,
+    "timestamp": "2026-03-10T22:00:00Z"
+  },
+  {
+    "transactionId": "T-1003",
+    "cardNumber": "5500000000000004",
+    "locationCode": "STO-01",
+    "productName": "HDMI Adapter",
+    "amount": 15.49,
+    "timestamp": "2026-03-10T18:00:00Z"
+  },
+  {
+    "transactionId": "T-1004",
+    "cardNumber": "4111111111111111",
+    "locationCode": "STO-03",
+    "productName": "Keyboard",
+    "amount": 45.00,
+    "timestamp": "2026-03-10T10:00:00Z"
+  },
+  {
+    "transactionId": "T-1005",
+    "cardNumber": "4000000000000002",
+    "locationCode": "STO-02",
+    "productName": "Mouse Pad",
+    "amount": 9.99,
+    "timestamp": "2026-03-10T02:00:00Z"
+  }
+]

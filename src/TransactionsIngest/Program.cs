@@ -40,7 +40,8 @@ Console.WriteLine("=======================================");
 var apiService = new MockApiService(
     apiSettings.UseMockFeed,
     apiSettings.BaseUrl,
-    apiSettings.TransactionsEndpoint);
+    apiSettings.TransactionsEndpoint,
+    apiSettings.MockFeedPath);
 
 var transactions = await apiService.FetchTransactionsAsync();
 Console.WriteLine($"\nFetched {transactions.Count} transaction(s) from API.\n");

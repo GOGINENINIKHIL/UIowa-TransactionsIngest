@@ -24,6 +24,8 @@ public class IngestServiceTests
         return db;
     }
 
+    private static readonly DateTime BaseTime = DateTime.UtcNow.Date.AddHours(-2);
+
     private static List<ApiTransaction> GetBaseTransactions() => new()
     {
         new ApiTransaction
@@ -33,7 +35,7 @@ public class IngestServiceTests
             LocationCode = "STO-01",
             ProductName = "Wireless Mouse",
             Amount = 19.99m,
-            Timestamp = new DateTime(2026, 3, 11, 0, 0, 0, DateTimeKind.Utc)
+            Timestamp = BaseTime
         },
         new ApiTransaction
         {
@@ -42,7 +44,7 @@ public class IngestServiceTests
             LocationCode = "STO-02",
             ProductName = "USB-C Cable",
             Amount = 25.00m,
-            Timestamp = new DateTime(2026, 3, 10, 22, 0, 0, DateTimeKind.Utc)
+            Timestamp = BaseTime.AddHours(-3)
         }
     };
 
@@ -211,7 +213,7 @@ public class IngestServiceTests
             LocationCode = "STO-01",
             ProductName = "Wireless Mouse",
             Amount = 19.99m,
-            TransactionTime = new DateTime(2026, 3, 11, 0, 0, 0, DateTimeKind.Utc),
+            TransactionTime = DateTime.UtcNow.AddHours(-2),
             Status = TransactionStatus.Finalized,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow

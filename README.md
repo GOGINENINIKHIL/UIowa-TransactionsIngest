@@ -30,7 +30,8 @@ TransactionsIngest/
 │       │   ├── MockApiService.cs       # Simulates API fetch
 │       │   └── IngestService.cs        # Core ingest logic
 │       ├── Program.cs                  # Entry point
-│       └── appsettings.json            # Configuration
+│       ├── appsettings.json            # Configuration
+│       └── mock-feed.json              # Sample JSON feed for local testing
 └── tests/
     └── TransactionsIngest.Tests/
         └── UnitTest1.cs                # Automated tests (7 tests)
@@ -90,7 +91,8 @@ All settings are in `src/TransactionsIngest/appsettings.json`:
   "ApiSettings": {
     "BaseUrl": "https://api.example.com",
     "TransactionsEndpoint": "/api/transactions",
-    "UseMockFeed": true
+    "UseMockFeed": true,
+    "MockFeedPath": "src/TransactionsIngest/mock-feed.json"
   },
   "IngestSettings": {
     "LookbackHours": 24
@@ -100,6 +102,49 @@ All settings are in `src/TransactionsIngest/appsettings.json`:
 
 Set `UseMockFeed: true` to use the built-in mock data. Set to `false` to wire in a real API (requires implementing the HTTP call in `MockApiService.cs`).
 
+---
+
+## Mock JSON Feed
+
+A sample `mock-feed.json` file is provided at `src/TransactionsIngest/mock-feed.json` for local testing. This file contains 5 sample transactions that match the API's expected JSON format.
+
+To use it, ensure `appsettings.json` is configured as follows:
+```json
+"ApiSettings": {
+  "UseMockFeed": true,
+  "MockFeedPath": "src/TransactionsIngest/mock-feed.json"
+}
+```
+
+You can edit `mock-feed.json` to test different scenarios such as:
+- Adding new transactions to test inserts
+- Removing transactions to test revocation
+- Changing field values to test update detection
+
+To use hardcoded mock data instead, set `MockFeedPath` to an empty string:
+```json
+"MockFeedPath": ""
+## Mock JSON Feed
+
+A sample `mock-feed.json` file is provided at `src/TransactionsIngest/mock-feed.json` for local testing. This file contains 5 sample transactions that match the API's expected JSON format.
+
+To use it, ensure `appsettings.json` is configured as follows:
+```json
+"ApiSettings": {
+  "UseMockFeed": true,
+  "MockFeedPath": "src/TransactionsIngest/mock-feed.json"
+}
+```
+
+You can edit `mock-feed.json` to test different scenarios such as:
+- Adding new transactions to test inserts
+- Removing transactions to test revocation
+- Changing field values to test update detection
+
+To use hardcoded mock data instead, set `MockFeedPath` to an empty string:
+```json
+"MockFeedPath": ""
+```
 ---
 
 ## Approach & Design Decisions
